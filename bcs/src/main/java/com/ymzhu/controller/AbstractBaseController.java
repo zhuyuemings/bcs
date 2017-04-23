@@ -11,6 +11,7 @@ public abstract class AbstractBaseController {
 	protected interface SaveJSONResult {
 		String STATUS = "status";
 		String ERRORS = "errors";
+		String MESSAGE = "message";
 	}
 
 	protected enum CommonStatus {
@@ -44,8 +45,8 @@ public abstract class AbstractBaseController {
 		JSONObject returnObj = new JSONObject();
 		for (CommonStatus cs : CommonStatus.values()) {
 			if (cs.getCode() == code) {
-				returnObj.put("status", code);
-				returnObj.put("message", cs.getMessage());
+				returnObj.put(SaveJSONResult.STATUS, code);
+				returnObj.put(SaveJSONResult.MESSAGE, cs.getMessage());
 				break;
 			}
 		}

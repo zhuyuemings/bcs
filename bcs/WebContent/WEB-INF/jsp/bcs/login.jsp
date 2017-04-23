@@ -108,11 +108,11 @@
 					return;
 				}
 				var $form = $('#loginForm');
-				$.post("<c:url value='/bcs/login/doLogin'/>", $form.serialize(), function(jsonResult) {
+				$.post("<c:url value='/web/doLogin'/>", $form.serialize(), function(jsonResult) {
 					if (jsonResult.status == 1) {
-						addWarning(jsonResult.msg);
-					} else if (jsonResult.status == -1) {
-						addWarning(jsonResult.msg);
+						addWarning(jsonResult.message);
+					} else {
+						addWarning(jsonResult.message);
 					}
 				}, 'json');
 			});

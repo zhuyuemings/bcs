@@ -29,7 +29,7 @@ public class LoginController extends AbstractBaseController {
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public void homePage(HttpServletResponse response, HttpServletRequest request) {
 		try {
-			response.sendRedirect(request.getContextPath() + "/web/showLogin");
+			response.sendRedirect(request.getContextPath() + "/web/login");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -61,8 +61,8 @@ public class LoginController extends AbstractBaseController {
 		}
 	}
 	
-	@RequestMapping("/showLogin")
-	public String showLogin(HttpServletRequest request, Model model) throws Exception{
+	@RequestMapping("/login")
+	public String login(HttpServletRequest request, Model model) throws Exception{
 		return AccessPrefix.BCS + "/login";
 	}
 }
