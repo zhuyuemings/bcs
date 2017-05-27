@@ -15,7 +15,7 @@ public abstract class AbstractBaseController {
 	}
 
 	protected enum CommonStatus {
-		SUCCESS(1, "登陆成功!"), FAILED(0, "登陆失败!"), NORECORD(-1, "用户不存在!");
+		SUCCESS(1, "登陆成功!"), FAILED(0, "登陆失败!"), NORECORD(-1, "用户不存在!"), MODIFY_SUCCESS(2, "修改成功!"), MODIFY_ERROR(3, "修改失败!");
 		private int code;
 		private String message;
 

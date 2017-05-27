@@ -7,9 +7,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.ymzhu.domain.User;
+import com.ymzhu.session.SessionUtils;
 
 public class WebLoginInterceptor extends HandlerInterceptorAdapter {
-	private static final String[] IGNORE_URL = { "/login" };
+	private static final String[] IGNORE_URL = { "/user/login" };
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -23,11 +24,11 @@ public class WebLoginInterceptor extends HandlerInterceptorAdapter {
 			}
 		}
 		if (!flag) {
-			User user = (User) request.getSession().getAttribute("user");
+			User user = (User) request.getSession().getAttribute(SessionUtils.SESSION_USER);
 			if (user != null) {
 				flag = true;
 			} else {
-				response.sendRedirect("/login");
+				response.sendRedirect(request.getContextPath() + "/user/login");
 				return false;
 			}
 		}

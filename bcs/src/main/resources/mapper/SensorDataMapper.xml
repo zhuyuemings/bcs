@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ymzhu.dao.SensorDataMapper">
+
 	<insert id="insertSensorData">
 		INSERT INTO bcs_sensor(recordtime, temperature,
 		humidity, sound)
@@ -16,4 +17,45 @@
 		WHERE
 		id = #{id}
 	</select>
+
+	<select id="getAllSensorData" resultType="com.ymzhu.domain.SensorData">
+		SELECT *
+		FROM
+		bcs_sensor
+	</select>
+
+	<select id="getRealTimeData" resultType="com.ymzhu.domain.SensorData">
+		SELECT *
+		FROM
+		bcs_data
+		WHERE
+		id = 0
+	</select>
+
+	<select id="getConfigData" resultType="com.ymzhu.domain.SensorData">
+		SELECT *
+		FROM
+		bcs_config
+		WHERE
+		id = 0
+	</select>
+
+	<update id="updateConfigData" parameterType="com.ymzhu.domain.SensorData">
+		update bcs_config
+		<set>
+			<if test="sensorData.recordtime != null">
+				recordtime = #{sensorData.recordtime},
+			</if>
+			<if test="sensorData.temperature != null">
+				temperature = #{sensorData.temperature},
+			</if>
+			<if test="sensorData.humidity != null">
+				humidity = #{sensorData.humidity},
+			</if>
+			<if test="sensorData.sound != null">
+				sound = #{sensorData.sound},
+			</if>
+		</set>
+		where id = 0
+	</update>
 </mapper>

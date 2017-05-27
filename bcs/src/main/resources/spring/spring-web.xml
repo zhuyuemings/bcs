@@ -30,8 +30,10 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<!-- 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller -->
-			<mvc:mapping path="web/**" />
-			<mvc:exclude-mapping path="/web/login"/><!-- 防止循环重定向到首页 -->
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/user/**"/><!-- 防止循环重定向到首页 -->
+			<mvc:exclude-mapping path="/web/**"/>
+			<mvc:exclude-mapping path="/app/**"/>
 			<!-- 拦截器类 -->
 			<bean class="com.ymzhu.interceptor.WebLoginInterceptor"></bean>
 		</mvc:interceptor>

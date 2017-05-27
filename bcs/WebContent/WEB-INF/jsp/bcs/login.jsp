@@ -7,17 +7,11 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700"
-	rel="stylesheet">
-<!-- Animate.css -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 <link rel="stylesheet" href="/bcs/css/animate.css">
-<!-- Icomoon Icon Fonts-->
 <link rel="stylesheet" href="/bcs/css/icomoon.css">
-<!-- Bootstrap  -->
 <link rel="stylesheet" href="/bcs/css/bootstrap.css">
-<!-- Theme style  -->
 <link rel="stylesheet" href="/bcs/css/style.css">
-<!-- Modernizr JS -->
 <script src="/bcs/js/modernizr-2.6.2.min.js"></script>
 <title>婴儿监护系统</title>
 </head>
@@ -75,8 +69,7 @@
 					<div class="row copyright">
 						<div class="col-md-12">
 							<p class="center-block">
-								<small class="block">Copyright &copy; 2017 ymzhu All
-									rights reserved.</small>
+								<small class="block">Copyright &copy; 2017 ymzhu All rights reserved.</small>
 							</p>
 						</div>
 					</div>
@@ -84,19 +77,13 @@
 			</footer>
 		</div>
 	</div>
-	<!-- jQuery -->
 	<script src="/bcs/js/jquery.min.js"></script>
-	<!-- Bootstrap -->
 	<script src="/bcs/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
 	<script src="/bcs/js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
 	<script src="/bcs/js/owl.carousel.min.js"></script>
-	<!-- Main -->
 	<script src="/bcs/js/main.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			//监听登录按钮 提交表单
 			$('#login_btn').click(function(){
 				$(".alert").alert('close');
 				if($('#username').val() == ""){
@@ -108,10 +95,12 @@
 					return;
 				}
 				var $form = $('#loginForm');
-				$.post("<c:url value='/web/doLogin'/>", $form.serialize(), function(jsonResult) {
+				$.post("<c:url value='/user/doLogin'/>", $form.serialize(), function(jsonResult) {
 					if (jsonResult.status == 1) {
 						addWarning(jsonResult.message);
-					} else {
+						var url = "<c:url value='/web/home'/>";
+						setTimeout("javascript:location.href='"+ url +"'", 100);
+					}else{
 						addWarning(jsonResult.message);
 					}
 				}, 'json');

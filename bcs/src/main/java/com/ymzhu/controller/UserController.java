@@ -20,8 +20,8 @@ import com.ymzhu.service.UserService;
 import com.ymzhu.session.SessionUtils;
 
 @Controller
-@RequestMapping({ "/", "/web" })
-public class LoginController extends AbstractBaseController {
+@RequestMapping({ "/", "/user" })
+public class UserController extends AbstractBaseController {
 
 	@Autowired
 	private UserService userService;
@@ -29,7 +29,7 @@ public class LoginController extends AbstractBaseController {
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public void homePage(HttpServletResponse response, HttpServletRequest request) {
 		try {
-			response.sendRedirect(request.getContextPath() + "/web/login");
+			response.sendRedirect(request.getContextPath() + "/user/login");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -55,7 +55,7 @@ public class LoginController extends AbstractBaseController {
 			HttpSession session = request.getSession();
 			session.removeAttribute(SessionUtils.SESSION_USER);
 			session.invalidate();
-			response.sendRedirect(request.getContextPath() + "/web/login");
+			response.sendRedirect(request.getContextPath() + "/user/login");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

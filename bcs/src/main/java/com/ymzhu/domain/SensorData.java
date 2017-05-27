@@ -1,6 +1,9 @@
 package com.ymzhu.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * 传感器数据记录实体类
@@ -97,6 +100,22 @@ public class SensorData {
 	@Override
 	public String toString() {
 		return "SensorData [" + id + "," + recordtime + "," + temperature + "," + humidity + "," + sound + "]";
+	}
+	
+	public String toJSONString(){
+		JSONObject obj = new JSONObject();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+		if(this.recordtime != null){
+			String time = sdf.format(this.recordtime);
+			obj.put("recordtime", "时间：" + time);
+		}else{
+			String time = sdf.format(new Date());
+			obj.put("recordtime", "时间：" + time);
+		}
+		obj.put("temperature", "温度(摄氏度):" + this.temperature);
+		obj.put("humidity", "湿度(百分比):" + this.humidity);
+		obj.put("sound", "声音(分贝):" + this.sound);
+		return obj.toJSONString();
 	}
 
 }
